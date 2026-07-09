@@ -12,4 +12,13 @@
     <UseWindowsForms>false</UseWindowsForms>
   </PropertyGroup>
 
+  <!-- Ignore transient publish/output folders so their copies of the .xaml
+       aren't double-compiled. -->
+  <ItemGroup>
+    <Compile Remove="publish_repo/**;dist/**" />
+    <Page Remove="publish_repo/**;dist/**" />
+    <ApplicationDefinition Remove="publish_repo/**;dist/**" />
+    <None Remove="publish_repo/**;dist/**" />
+  </ItemGroup>
+
 </Project>
