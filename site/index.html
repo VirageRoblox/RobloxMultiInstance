@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TinyAcc — Multi Game Instance</title>
+<meta name="description" content="TinyAcc lets you run more than one Roblox game client at the same time. One small file, no install.">
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  body {
+    background: #fff;
+    color: #111;
+    font-family: Tahoma, Verdana, Segoe UI, sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .page {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 36px 20px 60px;
+  }
+  .logo { width: 220px; max-width: 70%; height: auto; display: block; }
+  .tagline { margin: 14px 0 4px; font-size: 15px; }
+  .sub { color: #555; margin: 0 0 26px; }
+  a { color: #0645ad; }
+  .dl {
+    display: inline-block;
+    background: #c62828;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 26px;
+    border-radius: 4px;
+    border: 1px solid #9e1f1f;
+  }
+  .dl:hover { background: #b32020; }
+  .dl-meta { color: #555; font-size: 12px; margin-top: 8px; }
+  h2 {
+    font-size: 15px;
+    margin: 34px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ddd;
+  }
+  ol { padding-left: 22px; margin: 0; }
+  ol li { margin: 6px 0; }
+  .faq dt { font-weight: bold; margin-top: 14px; }
+  .faq dd { margin: 4px 0 0 0; color: #333; }
+  .note {
+    background: #fffbe6;
+    border: 1px solid #e6d98c;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 26px;
+  }
+  footer {
+    margin-top: 44px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <img class="logo" src="wordmark.png" alt="TinyAcc">
+  <p class="tagline"><b>Run more than one Roblox at the same time.</b></p>
+  <p class="sub">One small app. No install. Open it, then launch the game as many times as you want.</p>
+
+  <p>
+    <a class="dl" href="https://github.com/VirageRoblox/TinyAcc/releases/latest/download/TinyAcc.exe">Download TinyAcc.exe</a>
+  </p>
+  <p class="dl-meta">Free · Windows 10/11 · single file · <a href="https://github.com/VirageRoblox/TinyAcc">source code on GitHub</a></p>
+
+  <h2>How to use</h2>
+  <ol>
+    <li>Close Roblox completely.</li>
+    <li>Open TinyAcc — it shows <b>Multi-instance: ON</b>.</li>
+    <li>Launch Roblox as many times as you want.</li>
+  </ol>
+  <p>Keep the TinyAcc window open while you play. Close it to turn multi-instance off.</p>
+
+  <h2>FAQ</h2>
+  <dl class="faq">
+    <dt>Windows says "unknown publisher".</dt>
+    <dd>Click <b>More info → Run anyway</b>. TinyAcc is a small unsigned utility; the full source code is public on GitHub so you can see exactly what it does.</dd>
+
+    <dt>What does TinyAcc actually do?</dt>
+    <dd>The game normally closes your first window when you open a second one. TinyAcc holds the small startup lock that triggers that, so extra windows stay open. It does not touch the game itself — no injection, no memory editing, no files changed.</dd>
+
+    <dt>Why do I have to close Roblox first?</dt>
+    <dd>The first game window grabs the startup lock when it opens. TinyAcc has to be holding the lock <i>before</i> any game window starts — so: close everything, open TinyAcc, then launch.</dd>
+
+    <dt>Is this allowed?</dt>
+    <dd>Roblox's rules don't specifically ban running multiple clients, and many players use tools like this for AFK-style games. That said, it's not officially endorsed either — use it at your own risk, and don't use it for anything against the rules of the game you're playing.</dd>
+
+    <dt>It says "Roblox is already open".</dt>
+    <dd>Close <i>all</i> Roblox windows (check the taskbar), then click <b>Retry</b> in TinyAcc.</dd>
+  </dl>
+
+  <div class="note">
+    <b>Tip:</b> multi-account gameplay works best in AFK/idle games. Be sensible — one person playing their own accounts, not automation farms.
+  </div>
+
+  <footer>
+    © 2026 Virage Studio ·
+    <a href="https://github.com/VirageRoblox/TinyAcc">GitHub</a> ·
+    from the maker of <a href="https://getromacro.com">RoMacro</a>
+  </footer>
+
+</div>
+</body>
+</html>
