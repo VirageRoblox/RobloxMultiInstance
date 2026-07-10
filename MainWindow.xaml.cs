@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Windows;
 
-namespace RobloxMultiInstance;
+namespace TinyAcc;
 
 public partial class MainWindow : Window
 {
@@ -14,17 +14,27 @@ public partial class MainWindow : Window
     private void ShowStatus()
     {
         bool active = (Application.Current as App)?.Active == true;
+        bool gameRunning = App.IsGameRunning();
 
-        if (active)
+        if (active && !gameRunning)
         {
-            StatusText.Text = "On";
-            HintText.Text = "Keep this open, then launch Roblox.";
+            StatusText.Text = "Multi-instance: ON";
+            HintText.Text = "Keep this window open, then launch the game as many times as you want.";
             Buttons.Visibility = Visibility.Collapsed;
+        }
+        else if (gameRunning)
+        {
+            // Even with the mutex held, a client that was already open owns the
+            // real singleton event — multi-instance needs a clean start.
+            StatusText.Text = "Warning — Roblox is already open";
+            HintText.Text = "Multi-instance only works when TinyAcc starts first. " +
+                            "Close ALL Roblox windows, then click Retry (or use Close Roblox).";
+            Buttons.Visibility = Visibility.Visible;
         }
         else
         {
-            StatusText.Text = "Off";
-            HintText.Text = "Close Roblox first, then click Retry.";
+            StatusText.Text = "Multi-instance: OFF";
+            HintText.Text = "Something else owns the game's startup lock. Close Roblox, then click Retry.";
             Buttons.Visibility = Visibility.Visible;
         }
     }

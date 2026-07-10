@@ -1,7 +1,8 @@
+using System.Diagnostics;
 using System.Threading;
 using System.Windows;
 
-namespace RobloxMultiInstance;
+namespace TinyAcc;
 
 public partial class App : Application
 {
@@ -12,6 +13,9 @@ public partial class App : Application
     // clients coexist. This only works if we own the name BEFORE any Roblox is
     // running (otherwise the event already exists and we can't claim it).
     private const string SingletonName = "ROBLOX_singletonEvent";
+
+    private static readonly string[] GameProcessNames =
+        { "RobloxPlayerBeta", "RobloxPlayerLauncher", "Windows10Universal" };
 
     private Mutex? _mutex;
 
@@ -44,6 +48,19 @@ public partial class App : Application
             Active = false;
         }
         return Active;
+    }
+
+    /// <summary>
+    /// True when any game client is currently running. Even if we managed to
+    /// grab the mutex, a client that launched first owns the real singleton
+    /// event — multi-instance is only reliable when TinyAcc starts on a clean
+    /// slate, so the UI warns and asks for a close + retry.
+    /// </summary>
+    public static bool IsGameRunning()
+    {
+        foreach (var name in GameProcessNames)
+            if (Process.GetProcessesByName(name).Length > 0) return true;
+        return false;
     }
 
     protected override void OnExit(ExitEventArgs e)
