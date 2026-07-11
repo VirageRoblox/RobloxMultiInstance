@@ -20,6 +20,8 @@
     margin: 0 auto;
     padding: 36px 20px 60px;
   }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .mark { width: 56px; height: 56px; }
   .logo { width: 220px; max-width: 70%; height: auto; display: block; }
   .tagline { margin: 14px 0 4px; font-size: 15px; }
   .sub { color: #555; margin: 0 0 26px; }
@@ -67,7 +69,10 @@
 <body>
 <div class="page">
 
-  <img class="logo" src="wordmark.png" alt="TinyAcc">
+  <div class="brand">
+    <img class="mark" src="icon.png" alt="">
+    <img class="logo" src="wordmark.png" alt="TinyAcc">
+  </div>
   <p class="tagline"><b>Run more than one Roblox at the same time.</b></p>
   <p class="sub">One small app. No install. Open it, then launch the game as many times as you want.</p>
 
