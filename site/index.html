@@ -7,6 +7,10 @@
 <meta name="description" content="TinyAcc lets you run more than one Roblox game client at the same time. One small file, no install.">
 <link rel="icon" type="image/png" href="icon.png">
 <style>
+  html, body {
+    height: 100%;
+    overflow: hidden;   /* page fits one screen — no scrolling */
+  }
   body {
     background: #fff;
     color: #111;
@@ -14,11 +18,15 @@
     font-size: 14px;
     line-height: 1.55;
     margin: 0;
+    display: flex;
+    align-items: center;      /* center the content vertically */
+    justify-content: center;
   }
   .page {
     max-width: 620px;
-    margin: 0 auto;
-    padding: 36px 20px 60px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
   }
   .brand { display: flex; align-items: center; gap: 14px; }
   .mark { width: 56px; height: 56px; }
