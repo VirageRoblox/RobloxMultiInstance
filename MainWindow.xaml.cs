@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Windows;
 
 namespace TinyAcc;
@@ -47,9 +46,7 @@ public partial class MainWindow : Window
 
     private void ForceClose_Click(object sender, RoutedEventArgs e)
     {
-        foreach (var name in new[] { "RobloxPlayerBeta", "RobloxPlayerLauncher", "Windows10Universal" })
-            foreach (var p in Process.GetProcessesByName(name))
-                try { p.Kill(); } catch { }
+        App.CloseGamesInSession();   // only this session's Roblox — never another desktop's
 
         Dispatcher.InvokeAsync(async () =>
         {

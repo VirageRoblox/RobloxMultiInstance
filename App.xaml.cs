@@ -51,16 +51,46 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// True when any game client is currently running. Even if we managed to
-    /// grab the mutex, a client that launched first owns the real singleton
+    /// True when a game client is running IN THIS Windows session. Even if we
+    /// grabbed the mutex, a client that launched first owns the real singleton
     /// event — multi-instance is only reliable when TinyAcc starts on a clean
     /// slate, so the UI warns and asks for a close + retry.
+    ///
+    /// Session-scoped on purpose: process enumeration is system-wide, so without
+    /// the SessionId filter, TinyAcc on your console desktop would see (and try to
+    /// close) Roblox running inside a Remote Desktop session, and vice-versa. Each
+    /// session's multi-instance is independent, so each TinyAcc must mind only its own.
     /// </summary>
     public static bool IsGameRunning()
     {
+        int sid = CurrentSessionId();
         foreach (var name in GameProcessNames)
-            if (Process.GetProcessesByName(name).Length > 0) return true;
+            foreach (var p in Process.GetProcessesByName(name))
+            {
+                bool ours;
+                try { ours = p.SessionId == sid; } catch { ours = false; }
+                p.Dispose();
+                if (ours) return true;
+            }
         return false;
+    }
+
+    /// <summary>Closes game clients in THIS session only (never touches other sessions).</summary>
+    public static void CloseGamesInSession()
+    {
+        int sid = CurrentSessionId();
+        foreach (var name in GameProcessNames)
+            foreach (var p in Process.GetProcessesByName(name))
+            {
+                try { if (p.SessionId == sid) p.Kill(); } catch { }
+                finally { p.Dispose(); }
+            }
+    }
+
+    private static int CurrentSessionId()
+    {
+        using var me = Process.GetCurrentProcess();
+        return me.SessionId;
     }
 
     protected override void OnExit(ExitEventArgs e)
