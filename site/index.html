@@ -28,6 +28,15 @@
     padding: 20px;
     box-sizing: border-box;
   }
+  .hero { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .intro { flex: 1 1 280px; min-width: 250px; }
+  .shot {
+    flex: 0 0 auto;
+    width: 300px; max-width: 100%; height: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 6px 22px rgba(0,0,0,.16);
+  }
   .brand { display: flex; align-items: center; gap: 14px; }
   .mark { width: 56px; height: 56px; }
   .logo { width: 220px; max-width: 70%; height: auto; display: block; }
@@ -77,17 +86,23 @@
 <body>
 <div class="page">
 
-  <div class="brand">
-    <img class="mark" src="icon.png" alt="">
-    <img class="logo" src="wordmark.png" alt="TinyAcc">
-  </div>
-  <p class="tagline"><b>Run more than one Roblox at the same time!</b></p>
-  <p class="sub">TinyAcc is one small app. You simply open it and then launch the game as many times as you want.</p>
+  <div class="hero">
+    <div class="intro">
+      <div class="brand">
+        <img class="mark" src="icon.png" alt="">
+        <img class="logo" src="wordmark.png" alt="TinyAcc">
+      </div>
+      <p class="tagline"><b>Run more than one Roblox at the same time!</b></p>
+      <p class="sub">TinyAcc is one small app. You simply open it and then launch the game as many times as you want.</p>
 
-  <p>
-    <a class="dl" href="https://github.com/VirageRoblox/TinyAcc/releases/latest/download/TinyAcc.exe">Download TinyAcc.exe</a>
-  </p>
-  <p class="dl-meta">Free · Windows 10/11 · <a href="https://github.com/VirageRoblox/TinyAcc">source code on GitHub</a></p>
+      <p>
+        <a class="dl" href="https://github.com/VirageRoblox/TinyAcc/releases/latest/download/TinyAcc.exe">Download TinyAcc.exe</a>
+      </p>
+      <p class="dl-meta">Free · Windows 10/11 · <a href="https://github.com/VirageRoblox/TinyAcc">source code on GitHub</a></p>
+    </div>
+    <img class="shot" src="preview.png" width="301" height="166"
+         alt="The TinyAcc app window showing Multi-instance: ON">
+  </div>
 
   <h2>How to use</h2>
   <ol>
